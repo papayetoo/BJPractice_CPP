@@ -21,9 +21,9 @@ int main(){
     cin.tie(0);
     
     string a = "", b= "";
-    for(int i = 0; i < 60; i++){
+    for(int i = 0; i < 65; i++){
         a += "1";
-        if(i%5 == 0)
+        if(i%5 == 0 || i%5 == 3)
             b += "0";
         else
             b += "1";
