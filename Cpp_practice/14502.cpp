@@ -13,7 +13,7 @@
 
     using namespace std;
 
-    void processingVirus(int arr[][MAX], int n, int m, int col, int row);
+    void virusSpreading(int arr[][MAX], int n, int m, int col, int row);
     int countZero(int arr[][MAX], const int n, const int m);
     void printArray(int arr[][MAX], const int n, const int m);
     void copyArray(int origin[][MAX], int dest[][MAX], int col, int row);
@@ -57,7 +57,7 @@
                     cp[zeroCoordinate[k].first][zeroCoordinate[k].second] = 1;
                     for(int col = 0; col < n; col++){
                         for(int row = 0; row < m; row++){
-                            processingVirus(cp, n, m, col, row);
+                            virusSpreading(cp, n, m, col, row);
                         }
                     }
                     //result 변수에 안전지역의 수가 최대인 때 저장하기 위함.
@@ -75,29 +75,27 @@
         }
     }
 
-
-
-    void processingVirus(int arr[][MAX], int n, int m, int col, int row){
+    void virusSpreading(int arr[][MAX], int n, int m, int col, int row){
         //바이러스가 번지는 함수.
         if(arr[col][row] == 1 || arr[col][row] == 0)
             return;
         else if(arr[col][row] == 2){
             if(col + 1 < n && arr[col + 1][row] == 0){
                 arr[col + 1][row] = 2;
-                processingVirus(arr, n, m,col + 1, row);
+                virusSpreading(arr, n, m,col + 1, row);
             }
             if(col - 1 >= 0 && arr[col -1 ][row] == 0){
                 arr[col -1][row] = 2;
-                processingVirus(arr, n, m,col - 1, row);
+                virusSpreading(arr, n, m,col - 1, row);
             }
             if(row + 1 < m && arr[col][row + 1] == 0){
                 arr[col][row + 1] = 2;
-                processingVirus(arr, n, m,col, row + 1);
+                virusSpreading(arr, n, m,col, row + 1);
             }
             if(row - 1 >= 0 && arr[col][row - 1] == 0)
             {
                 arr[col][row - 1] = 2;
-                processingVirus(arr, n, m, col, row - 1);
+                virusSpreading(arr, n, m, col, row - 1);
             }
         }
     }
